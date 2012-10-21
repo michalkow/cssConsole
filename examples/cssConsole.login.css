@@ -1,0 +1,51 @@
+.cssConsole {
+position:relative;
+font-family: courier;
+font-size: 14px;
+background: black;
+color: #5cfff9;
+padding: 5px;
+overflow: hidden;
+height: 17px;
+cursor:text;
+}
+
+.cssConsoleDisplay {
+float: left; 
+padding-left: 3px;
+white-space: pre;
+}
+
+.cssConsoleInput {
+position:absolute;
+left:0px;
+top:-30px;
+opacity: 0; 
+filter:alpha(opacity=0);
+} 
+
+.cssConsoleCursor {
+float: left;
+background: #5cfff9;
+width:8px;
+height:17px;
+margin:0;
+padding:0;
+padding-right:1px;
+padding-left:1px;
+visibility: hidden;
+}
+
+.cssConsoleDisplay span.selected {
+background: #5cfff9;
+color: black;	
+}
+
+.cssConsoleDisplay span {
+background: black;
+color: #5cfff9;	
+margin:0;
+padding:0;
+padding-right:1px;
+padding-left:1px;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="cssConsole.console.css" type="text/css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="cssConsole.min.js"></script>
+<style>
+body{
+background: #370f29;
+font-family: courier;
+}
+
+.container {
+margin: 50px auto;
+height: 600px;
+width: 950px;
+position:relative;
+border:1px solid #fefefe;
+}
+
+#input {
+width: 910px;
+display:inline-block;
+position:relative;
+float:left;
+}
+
+.bottom {
+position:absolute;
+bottom:5px;
+width: 100%;
+}
+
+.label {
+width: 30px;
+position: relative;
+left: 15px;
+top:5px;
+color: #fefefe;
+float:left;
+}
+
+.console {
+position:absolute;
+bottom:32px;
+overflow:hidden;
+}
+
+.white{
+color: #fefefe;
+}
+
+.blue{
+color: #81bbd5;
+}
+
+.line {
+margin-left: 15px;
+margin-bottom:2px;
+}
+
+.margin {
+margin-left: 40px;
+margin-bottom:2px;
+}
+
+</style>
+<meta charset=utf-8 />
+<title>CSS console</title>
+</head>
+<body>
+	<div class="container">
+		<div class="console">
+			<div class="line white">Welcome to cssConsole! Type help for command list.</div>
+		</div>
+		<div class="bottom">
+			<div class="label">></div>
+			<div id="input"></div>
+		</div>
+	</div>  
+<script>
+$('#input').cssConsole({
+	inputName:'console',
+	charLimit: 60,
+	onEnter: function(){
+		addLine("> "+$('#input').find('input').val());
+		execCommand($('#input').find('input').val());
+		$('#input').cssConsole('reset');	
+	}
+});
+
+var lineLimit = 28;
+var focus;
+
+focus = window.setInterval(function() {
+	if(!$('#input').find('input').is(":focus")){
+		$('#input').find('input').focus();
+	}
+}, 100);
+
+function addLine(input, style, color) {
+		if($('.console div').length==lineLimit) {
+			$('.console div').eq(0).remove();
+		}
+		style = typeof style !== 'undefined' ? style : 'line';
+		color = typeof color !== 'undefined' ? color : 'white';
+		$('.console').append('<div class="'+style+' '+color+'">'+input+'</div>');
+}
+
+function execCommand(command){
+    if ( commands[command] ) {
+      return commands[command]();
+    } else {
+      addLine("Command '" + command + "' was not found.");
+    }   
+}
+
+var commands = {
+	help: function (){
+		addLine("Available command list:");
+		addLine("dir", 'margin');
+		addLine("help", 'margin');
+		addLine("ps", 'margin');
+	},
+	dir: function(){
+		addLine(".");
+		addLine("..");
+		addLine("Applications", 'margin', 'blue');
+		addLine("Documents", 'margin', 'blue');
+		addLine("Downloads", 'margin', 'blue');
+		addLine("Movies", 'margin', 'blue');
+		addLine("Music", 'margin', 'blue');
+		addLine("System", 'margin', 'blue');		
+	},
+	ps: function() {
+		addLine("Running processes:");
+		addLine("name: browser pid:8876", 'margin');
+		addLine("name: movie player pid:3213", 'margin');
+		addLine("name: system pid:0012", 'margin');
+	}
+}
+</script>
+  
+</body>
+</html>

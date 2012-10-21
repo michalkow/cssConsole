@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="cssConsole.login.css" type="text/css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="cssConsole.min.js"></script>
+<style>
+body{
+background: black;
+font-family: courier;
+color: #5cfff9;
+}
+
+.title{
+margin-top: 90px;
+font-size: 24px;
+text-align:center;
+width: 950px;
+}
+
+.container {
+height: 420px;
+width: 950px;
+margin: 100px auto;
+position:relative;
+border:1px solid #5cfff9;
+}
+
+#login {
+width: 250px;
+border:1px solid #5cfff9;
+display:inline-block;
+position:relative;
+top:-6px;
+}
+
+#password {
+width: 250px;
+border:1px solid #5cfff9;
+display:inline-block;
+position:relative;
+left:0;
+}
+
+.button {
+font-size: 18px;
+border:1px solid #5cfff9;
+width: 80px;
+height:25px;
+text-align:center;
+padding-top:5px;
+margin-right: 100px;
+float:left;
+cursor: pointer;
+}
+
+.label {
+margin-bottom: 20px;
+position: relative;
+top:3px;
+}
+
+.form {
+margin-top: 50px;
+margin-bottom: 20px;
+float:left;
+width:505px;
+}
+
+.labels {
+margin-top: 50px;
+margin-bottom: 20px;
+float:left;
+padding-right:40px;
+width:305px;
+text-align:right;
+}
+
+.error {
+color: white;
+z-index: 100;
+position:absolute;
+left: 200px;
+width: 550px;
+top: 65px;
+padding-top: 80px;
+height: 170px;
+background: red;
+text-align:center;
+font-size: 36px;
+display:none;
+}
+
+.erbutton {
+font-size: 18px;
+border:1px solid white;
+color: white;
+width: 120px;
+height:25px;
+position:absolute;
+text-align:center;
+padding-top:5px;
+bottom: 30px;
+left: 205px;
+cursor: pointer;
+}
+</style>
+<meta charset=utf-8 />
+<title>CSS console</title>
+</head>
+<body>
+	<div class="container">
+		<div class="error">ACCESS DENIED<div class="erbutton" id="try">Try Again</div></div>
+		<div class="title">Restricted Area</div>
+		<div class="labels">
+			<div class="label">Login:</div>
+			<div class="label">Password:</div>
+		</div>
+		<div class="form">
+			<div id="login"></div>
+			<div id="password"></div>
+		</div>
+		<div class="button" id="submit">Submit</div>
+		<div class="button" id="reset">Reset</div>
+	</div>  
+<script>
+$('#login').cssConsole({
+	inputName:'login',
+	charLimit: 20,
+	onEnter: function(){
+		$('.error').css('display', 'block');
+	}
+});
+$('#password').cssConsole({
+	inputName:'password', 
+	type: 'password', 
+	charLimit: 20,
+	onEnter: function(){
+		$('.error').css('display', 'block');
+	}
+});
+$('#submit').on('click', function(){
+	$('.error').css('display', 'block');
+});
+$('#try').on('click', function(){
+	$('.error').css('display', 'none');
+	$('#login').cssConsole('reset');
+	$('#password').cssConsole('reset');
+});
+$('#reset').on('click', function(){
+	$('#login').cssConsole('reset');
+	$('#password').cssConsole('reset');
+});
+</script>
+  
+</body>
+</html>
