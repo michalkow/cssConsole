@@ -117,9 +117,15 @@
 					} else if(e.which==46) {
 						//delete
 						if(root.cursor_position<$this.find('.cssConsoleDisplay span').length){
-							$this.find('.cssConsoleDisplay span').eq(root.cursor_position+1).remove();
+							$this.find('.cssConsoleDisplay span').eq(root.cursor_position).remove();
 						}
 						root.inputVal=root.inputVal.slice(0, root.cursor_position) + root.inputVal.slice(root.cursor_position+1, root.inputVal.length);
+					} else if(e.which==35) {
+						//end
+						root.cursor_position=$this.find('.cssConsoleDisplay span').length;
+					} else if(e.which==36) {
+						//home
+						root.cursor_position=0;
 					} else if(e.which==37) {
 						//arrow left
 						if(root.cursor_position>0){
