@@ -52,7 +52,7 @@ Settable Options
 <tbody>
 <tr>
 <td>type</td>
-<td>Type of the input box (eg. 'text', 'password')</td>
+<td>Type of the input box (supports: 'text', 'password')</td>
 <td>string</td>
 <td>'text'</td>
 </tr>						
@@ -73,6 +73,12 @@ Settable Options
 <td>If provided, sets the value for the input element</td>
 <td>string</td>
 <td>null</td>
+</tr>	
+<tr>
+<td>blinkingInterval</td>
+<td>Sets blinking interval (in milliseconds) for the caret</td>
+<td>integer</td>
+<td>500</td>
 </tr>						
 <tr>
 <td>preventEnter</td>
@@ -86,7 +92,7 @@ Settable Options
 <td>integer</td>
 <td>0</td>
 </tr>						
-<tr class="last">
+<tr>
 <td>onEnter</td>
 <td>Sets function to be executed on pressing Enter key</td>
 <td>function</td>
@@ -109,7 +115,7 @@ Methods
 <td>reset</td>
 <td>Resets value of the input field</td>
 </tr>						
-<tr class="last">
+<tr>
 <td>destroy</td>
 <td>Removes plugin functionality</td>
 </tr>						
