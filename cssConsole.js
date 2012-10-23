@@ -1,7 +1,7 @@
 (function( $ ){
 
 	// Updates the position of the caret
-	var updateCursor = function(element) {
+	var updateCursor = function(element, blinkingInterval) {
 		$(element).find('.cssConsoleDisplay span').removeClass("selected");
 		clearInterval(element.cursor);
 		if(element.cursor_position!=$(element).find('.cssConsoleDisplay span').length) {
@@ -13,7 +13,7 @@
 			  } else {
 				$(element).find('.cssConsoleDisplay span').eq(element.cursor_position).addClass('selected');
 			  }  
-			  }, 500);
+			  }, blinkingInterval);
 		} else {
 			$(element).find('.cssConsoleCursor').css({ visibility: 'visible' }); 
 			  element.cursor = window.setInterval(function() {
@@ -22,7 +22,7 @@
 			  } else {
 				$(element).find('.cssConsoleCursor').css({ visibility: 'visible' });  
 			  }  
-			  }, 500);
+			  }, blinkingInterval);
 		}
 		return element;
 	}
@@ -37,6 +37,7 @@
 	  inputId : null,
 	  inputName : null,
 	  inputValue : null,
+	  blinkingInterval: 500,
 	  charLimit : 0,
 	  preventEnter : true,
 	  onEnter: function (){ } 
@@ -78,11 +79,11 @@
 					
 			$this.on('click', function() {
 			   $this.find('.cssConsoleInput').focus();
-				updateCursor(root);
+				updateCursor(root, settings.blinkingInterval);
 			});			
 			
 			$this.find('.cssConsoleInput').on('focus', function() {
-				updateCursor(root);
+				updateCursor(root, settings.blinkingInterval);
 			});
 
 			// Removes caret on blur
@@ -139,7 +140,7 @@
 					} else {
 					}
 					if($this.find('.cssConsoleInput').is(":focus")) {
-						updateCursor(root);
+						updateCursor(root, settings.blinkingInterval);
 					}
 			});
 			  
@@ -171,7 +172,7 @@
 							root.cursor_position=root.cursor_position+$this.find('.cssConsoleInput').val().length-root.inputVal.length;
 						}
 						root.inputVal=$this.find('.cssConsoleInput').val();
-						updateCursor(root);
+						updateCursor(root, settings.blinkingInterval);
 					}
 				}
 			});
@@ -204,8 +205,9 @@
 					$this.find('.cssConsoleDisplay span').removeClass("selected");
 				} 
 				$this.find('.cssConsoleInput').val('');
+				root.inputVal='';
 				if($this.find('.cssConsoleInput').is(":focus")) {
-					updateCursor($this);
+					updateCursor($this, settings.blinkingInterval);
 				} else {
 					clearInterval(root.cursor);
 					$this.find('.cssConsoleCursor').css({ visibility: 'hidden' });
