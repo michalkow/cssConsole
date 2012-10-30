@@ -49,6 +49,7 @@
 			root.cursor;
 			root.cursor_position=0;
 			root.inputVal='';
+			root.blinkingInterval=settings.blinkingInterval;
 			
 			// Creating additional html elements
 			$this.addClass('cssConsole');
@@ -207,7 +208,7 @@
 				$this.find('.cssConsoleInput').val('');
 				root.inputVal='';
 				if($this.find('.cssConsoleInput').is(":focus")) {
-					updateCursor($this, settings.blinkingInterval);
+					updateCursor($this, root.blinkingInterval);
 				} else {
 					clearInterval(root.cursor);
 					$this.find('.cssConsoleCursor').css({ visibility: 'hidden' });
