@@ -79,6 +79,11 @@ margin-bottom:2px;
 		</div>
 	</div>  
 <script>
+$(document).ready(function() {
+    $('#input').find('input').focus();
+});
+
+
 $('#input').cssConsole({
 	inputName:'console',
 	charLimit: 60,
@@ -86,17 +91,15 @@ $('#input').cssConsole({
 		addLine("> "+$('#input').find('input').val());
 		execCommand($('#input').find('input').val());
 		$('#input').cssConsole('reset');	
+		$('#input').find('input').focus();
 	}
 });
 
 var lineLimit = 28;
-var focus;
 
-focus = window.setInterval(function() {
-	if(!$('#input').find('input').is(":focus")){
-		$('#input').find('input').focus();
-	}
-}, 100);
+$('.container').on('click', function() {
+	$('#input').find('input').focus();
+});
 
 function addLine(input, style, color) {
 		if($('.console div').length==lineLimit) {
