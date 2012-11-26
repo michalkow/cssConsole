@@ -1,4 +1,5 @@
 .cssConsole {
+font-size: 17px;
 position:relative;
 font-family: courier;
 background: #370f29;
@@ -7,6 +8,7 @@ padding: 5px;
 overflow: hidden;
 height: 17px;
 cursor:text;
+line-height:17px;
 }
 
 .cssConsoleDisplay {
@@ -41,10 +43,13 @@ color: #370f29;
 }
 
 .cssConsoleDisplay span {
-background: #370f29;
+height:17px;
+line-height:17px;
 color: #fefefe;	
 margin:0;
 padding:0;
 padding-right:1px;
 padding-left:1px;
+height:17px;
+line-height:17px;
 }
